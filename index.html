@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>QUINCY.WORLD</title>
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html, body {
+  width:100%;
+  height:100%;
+  background:black;
+  overflow:hidden;
+  font-family: system-ui, sans-serif;
+  color:white;
+}
+
+/* BACKGROUND */
+.background {
+  position:fixed;
+  inset:0;
+  background:url("QUINCY.WORLD.jpeg") center/cover no-repeat;
+  z-index:0;
+}
+
+.vignette {
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle, transparent 55%, rgba(0,0,0,.75));
+  z-index:1;
+}
+
+/* UFO */
+.ufo {
+  position:absolute;
+  left:8%;
+  bottom:18%;
+  width:140px;
+  z-index:3;
+  animation:ufoFloat 9s ease-in-out infinite;
+  pointer-events:none;
+}
+
+@keyframes ufoFloat {
+  0% { transform:translateY(0); }
+  50% { transform:translateY(-14px); }
+  100% { transform:translateY(0); }
+}
+
+/* STAR NAV */
+.star {
+  position:absolute;
+  background:none;
+  border:none;
+  color:white;
+  font-size:14px;
+  letter-spacing:.5px;
+  cursor:pointer;
+  opacity:.55;
+  z-index:4;
+  transition:.3s ease;
+}
+
+.star:hover { opacity:1; transform:scale(1.06); }
+
+.star-about   { top:30%; left:18%; }
+.star-socials { top:38%; right:20%; }
+.star-contact { top:52%; right:16%; }
+.star-shop    { bottom:28%; left:18%; }
+
+/* OVERLAY (BLACK DIM) */
+.overlay {
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  backdrop-filter:blur(6px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:10;
+}
+
+.overlay.active { display:flex; }
+
+/* PANEL */
+.panel {
+  background:rgba(15,15,15,.95);
+  border-radius:26px;
+  width:90%;
+  max-width:520px;
+  padding:28px;
+  animation:panelIn .25s ease;
+}
+
+@keyframes panelIn {
+  from { opacity:0; transform:translateY(20px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+.close {
+  background:none;
+  border:none;
+  color:white;
+  font-size:20px;
+  float:right;
+  cursor:pointer;
+}
+
+.panel h2 { margin-bottom:18px; }
+
+.social-grid a {
+  display:flex;
+  align-items:center;
+  margin-bottom:14px;
+  text-decoration:none;
+  color:white;
+  opacity:.85;
+}
+
+.social-grid a:hover { opacity:1; }
+
+/* SOCIAL ICON GRID */
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+  transition: transform .25s ease, background .25s ease;
+}
+
+.social-btn:hover {
+  transform: scale(1.03);
+  background: rgba(255,255,255,0.12);
+}
+
+.social-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: white;
+  flex-shrink: 0;
+}
+
+/* PANEL ANIMATION UPGRADE */
+.panel {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: panelReveal .35s ease forwards;
+}
+
+@keyframes panelReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* DEPTH LAYERS */
+.background {
+  transition: transform 0.25s ease-out;
+}
+
+.star {
+  transition: transform 0.3s ease-out, opacity 0.3s ease;
+}
+
+/* AMBIENT STAR TWINKLE */
+.star {
+  animation: twinkle 6s ease-in-out infinite;
+}
+
+.star:nth-child(1) { animation-duration: 7s; }
+.star:nth-child(2) { animation-duration: 9s; }
+.star:nth-child(3) { animation-duration: 8s; }
+.star:nth-child(4) { animation-duration: 10s; }
+
+@keyframes twinkle {
+  0%   { opacity: 0.45; }
+  50%  { opacity: 0.85; }
+  100% { opacity: 0.45; }
+}
+
+
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+<div class="vignette"></div>
+
+<img src="c:\Users\Mehan\Desktop\Freelancer website\quency world/ufo.png" class="ufo" alt="UFO">
+
+<!-- NAV -->
+<button class="star star-about" data-panel="about">✦ About Quincy</button>
+<button class="star star-socials" data-panel="socials">✦ Socials</button>
+<button class="star star-contact" data-panel="contact">✦ Contact Quincy</button>
+<button class="star star-shop" data-link="https://yourshopifystore.com">✦ Shop →</button>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay">
+  <div class="panel">
+    <button class="close" id="close">✕</button>
+    <div id="panel-body"></div>
+  </div>
+</div>
+
+<script>
+const overlay = document.getElementById("overlay");
+const panelBody = document.getElementById("panel-body");
+const closeBtn = document.getElementById("close");
+
+document.querySelectorAll(".star").forEach(btn => {
+  btn.onclick = () => {
+
+    // EXTERNAL
+    if (btn.dataset.link) {
+      window.open(btn.dataset.link, "_blank");
+      return;
+    }
+
+    // INTERNAL
+    overlay.classList.add("active");
+
+    const panel = btn.dataset.panel;
+
+    if (panel === "about") {
+      panelBody.innerHTML = `
+        <h2>About Quincy</h2>
+        <p>Content coming soon.</p>
+      `;
+    }
+
+    if (panel === "contact") {
+      panelBody.innerHTML = `
+        <h2>Contact Quincy</h2>
+        <p>Qontact@frequincy.com</p>
+      `;
+    }
+
+   if (panel === "socials") {
+  panelBody.innerHTML = `
+    <h2>Socials</h2>
+    <div class="social-grid">
+
+      <a class="social-btn" href="https://www.snapchat.com/add/quincy/" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M12 2c5 0 5 4 5 6 0 1.5.5 2.5 1.5 3 .7.4.5 1.4-.3 1.6-1.2.3-2.3.9-2.7 1.6-.5.8.2 2.5-1.1 3.4-.7.5-1.8.5-2.4 0-1.3-.9-.6-2.6-1.1-3.4-.4-.7-1.5-1.3-2.7-1.6-.8-.2-1-1.2-.3-1.6C6.5 11.5 7 10.5 7 9c0-2 0-6 5-6z"/></svg>
+        Snapchat
+      </a>
+
+      <a class="social-btn" href="https://tiktok.com/@quincy" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M14 2h2c.2 2 1.5 3.5 3.5 3.7V8c-1.6 0-3-.5-4.1-1.4V15a5 5 0 1 1-4.9-5v2.6a2.5 2.5 0 1 0 2.5 2.5V2z"/></svg>
+        TikTok
+      </a>
+
+      <a class="social-btn" href="https://instagram.com/quincy" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg>
+        Instagram
+      </a>
+
+      <a class="social-btn" href="https://twitter.com/quincy" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M22 5.8c-.8.4-1.6.6-2.5.7a4.3 4.3 0 0 0 1.9-2.4c-.8.5-1.8.9-2.8 1.1a4.3 4.3 0 0 0-7.3 3v.7A12.2 12.2 0 0 1 3 4.8a4.3 4.3 0 0 0 1.3 5.7c-.7 0-1.3-.2-1.9-.5 0 2 1.4 3.8 3.3 4.2-.3.1-.7.1-1 .1-.2 0-.5 0-.7-.1.5 1.6 2 2.8 3.7 2.8A8.7 8.7 0 0 1 2 18.5a12.3 12.3 0 0 0 6.6 1.9c8 0 12.4-6.6 12.4-12.4v-.6c.8-.6 1.5-1.3 2-2.1z"/></svg>
+        Twitter
+      </a>
+
+      <a class="social-btn" href="https://www.twitch.tv/thisisnotquincy" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M4 2h16v14l-4 4h-4l-2 2H8v-2H4V2zm14 12V4H6v12h4v2l2-2h4l2-2z"/></svg>
+        Twitch
+      </a>
+
+    </div>
+  `;
+}
+
+
+  };
+});
+
+closeBtn.onclick = () => overlay.classList.remove("active");
+
+
+// ===== MOUSE MOVE DEPTH (DESKTOP ONLY) =====
+const bg = document.querySelector('.background');
+const stars = document.querySelectorAll('.star');
+
+let mouseX = 0;
+let mouseY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = (e.clientX / window.innerWidth) - 0.5;
+  mouseY = (e.clientY / window.innerHeight) - 0.5;
+});
+
+// Animate smoothly
+function depthLoop() {
+  const bgX = mouseX * 8;
+  const bgY = mouseY * 8;
+
+  bg.style.transform = `translate(${bgX}px, ${bgY}px) scale(1.02)`;
+
+  stars.forEach((star, i) => {
+    const depth = (i % 3 + 1) * 3;
+    star.style.transform = `translate(${mouseX * depth}px, ${mouseY * depth}px)`;
+  });
+
+  requestAnimationFrame(depthLoop);
+}
+
+// Disable on touch devices
+if (!('ontouchstart' in window)) {
+  depthLoop();
+}
+
+</script>
+
+</body>
+</html>
