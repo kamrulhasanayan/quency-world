@@ -332,6 +332,50 @@ setTimeout(randomBlink, 3000);
   text-shadow: 0 0 18px rgba(255,255,255,0.9);
 }
 
+.star {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+
+/* ICON */
+.nav-icon {
+  width: 26px;
+  height: 26px;
+  filter: drop-shadow(0 0 8px rgba(255,255,255,0.6));
+  animation: iconFloat 5s ease-in-out infinite;
+}
+
+/* TEXT */
+.nav-text {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  color: white;
+  -webkit-text-stroke: 0.8px rgba(255,255,255,0.6); /* white trim */
+  text-shadow: 0 0 12px rgba(255,255,255,0.5);
+}
+
+/* HOVER */
+.star:hover .nav-icon {
+  transform: scale(1.15);
+}
+
+.star:hover .nav-text {
+  text-shadow: 0 0 20px rgba(255,255,255,1);
+}
+
+/* ICON FLOAT */
+@keyframes iconFloat {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
 
 </style>
 </head>
@@ -346,41 +390,27 @@ setTimeout(randomBlink, 3000);
 
 <!-- NAV -->
 
-
 <button class="star star-about" data-panel="about">
-  <span class="icon-bg">
-    <img src="https://mocksurl.com/assets/uploads/mocks/58-about_logo.png?1834" alt="About Quincy">
-  </span>
-  <span class="label">ABOUT</span>
+  <img src="https://mocksurl.com/assets/uploads/mocks/58-about_logo.png?1834" alt="About Quincy" >
+  <span class="nav-text" style="margin-left: -150px;">ABOUT</span>
 </button>
 
-
-<button class="star star-socials" data-panel="socials">
-  <span class="icon-bg">
-  <img src="https://mocksurl.com/assets/uploads/mocks/9-socials_logo.png?500" style="
-    margin-right: -15px; alt="Socials">
-    </span>
-    <span class="label">SOCIALS</span>
+<button class="star star-socials" data-panel="Socials">
+  <img src="https://mocksurl.com/assets/uploads/mocks/9-socials_logo.png?500"  alt="Socials" >
+  <span class="nav-text" style="margin-left: -175px;">SOCIALS</span>
 </button>
-
-
-
 
 <button class="star star-shop" data-link="https://yourshopifystore.com">
-  <span class="icon-bg">
-  <img src="https://mocksurl.com/assets/uploads/mocks/15-shop_logo_ufo.png?850" alt="Shop">
-  </span>
-  <span class="label">SHOP</span>
+ <img src="https://mocksurl.com/assets/uploads/mocks/15-shop_logo_ufo.png?850" alt="Shop">
+  <span class="nav-text" style="margin-left: -150px;">SHOP</span>
 </button>
-
-
 
 <button class="star star-contact" data-panel="contact">
-  <span class="icon-bg">
   <img src="https://mocksurl.com/assets/uploads/mocks/84-contact_logo.png?1736" alt="Contact Quincy">
-    </span>
-    <span class="label">CONTACT</span>
+  <span class="nav-text" style="margin-left: -175px;">CONTACT</span>
 </button>
+
+
 
 
 
