@@ -287,6 +287,51 @@ setTimeout(randomBlink, 3000);
   to   { transform: translateX(30%); }
 }
 
+.star {
+  position: absolute;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  color: white;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+.star .label {
+  position: relative;
+  font-size: 20px;
+  z-index: 2;
+  text-shadow: 0 0 12px rgba(255,255,255,0.4);
+}
+
+.star .icon-bg {
+  position: absolute;
+  inset: -20px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.25;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.star .icon-bg img {
+  width: 64px;
+  height: 64px;
+  filter: blur(1px) drop-shadow(0 0 12px rgba(255,255,255,0.5));
+}
+
+/* hover effect */
+.star:hover .icon-bg {
+  opacity: 0.6;
+  transform: scale(1.2);
+}
+
+.star:hover .label {
+  text-shadow: 0 0 18px rgba(255,255,255,0.9);
+}
+
 
 </style>
 </head>
@@ -300,22 +345,41 @@ setTimeout(randomBlink, 3000);
 <div class="smoke-layer"></div>
 
 <!-- NAV -->
+
+
 <button class="star star-about" data-panel="about">
-  <img src="https://mocksurl.com/assets/uploads/mocks/58-about_logo.png?1834" alt="About Quincy">
+  <span class="icon-bg">
+    <img src="https://mocksurl.com/assets/uploads/mocks/58-about_logo.png?1834" alt="About Quincy">
+  </span>
+  <span class="label">ABOUT</span>
 </button>
+
 
 <button class="star star-socials" data-panel="socials">
+  <span class="icon-bg">
   <img src="https://mocksurl.com/assets/uploads/mocks/9-socials_logo.png?500" style="
     margin-right: -15px; alt="Socials">
+    </span>
+    <span class="label">SOCIALS</span>
 </button>
+
+
+
 
 <button class="star star-shop" data-link="https://yourshopifystore.com">
+  <span class="icon-bg">
   <img src="https://mocksurl.com/assets/uploads/mocks/15-shop_logo_ufo.png?850" alt="Shop">
+  </span>
+  <span class="label">SHOP</span>
 </button>
 
+
+
 <button class="star star-contact" data-panel="contact">
-  <img src="https://mocksurl.com/assets/uploads/mocks/84-contact_logo.png?1736"style="
-    margin-top: 100px; margin-right: 50px; alt="Contact Quincy">
+  <span class="icon-bg">
+  <img src="https://mocksurl.com/assets/uploads/mocks/84-contact_logo.png?1736" alt="Contact Quincy">
+    </span>
+    <span class="label">CONTACT</span>
 </button>
 
 
