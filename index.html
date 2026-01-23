@@ -7,6 +7,21 @@
 
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
+/* =========================
+   RESPONSIVE SCALING
+========================= */
+
+/* Base desktop */
+:root {
+  --scene-scale: 1;
+}
+
+body {
+  transform: scale(var(--scene-scale));
+  transform-origin: center top;
+}
+
+
 
 html, body {
   width:100%;
@@ -196,7 +211,7 @@ html, body {
 }
 
 /* BLINK LAYER */
-.blink-layer {
+/*.blink-layer {
   position: fixed;
   inset: 0;
   background: url("https://mocksurl.com/assets/uploads/mocks/54-eyes_blink.png?1346") center / cover no-repeat;
@@ -383,22 +398,107 @@ html, body {
   opacity: 1;
 }
 
+/*.star {
+  background: rgba(200,200,200,0.12);
+  padding: 10px 14px;
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+}
+*/
+
+
+.qrew-brand {
+  position: fixed;
+  left: 50%;
+  bottom: 4vh;          /* pushes into the black void */
+  transform: translateX(-50%);
+  z-index: 2;          /* below nav, above stars */
+  pointer-events: auto;
+  opacity: 0.85;
+  transition: transform .3s ease, opacity .3s ease;
+}
+
+.qrew-brand:hover {
+  opacity: 1;
+  transform: translateX(-50%) scale(1.06);
+}
+
+.qrew-brand img {
+  width: 120px;
+  max-width: 30vw;
+}
+
+/* Scale entire scene */
+
+
+
 
 </style>
 </head>
 
 <body>
+<!--<div class="background" id="globe"></div>-->
 
 <div class="background"></div>
-<div class="blink-layer"></div>
+<!--<div class="blink-layer"></div>-->
 <div class="vignette"></div>
 
 <!--<img src="img/" class="ufo" alt="UFO">-->
 <div class="smoke-layer"></div>
 
+
 <!-- NAV -->
 
-<button class="star star-about" data-panel="about">
+<div class="nav left">
+  <button class="star" data-panel="about">
+    <img src="https://mocksurl.com/assets/uploads/mocks/58-about_logo.png?1834" class="nav-icon" alt="About Quincy" style="margin-left: 360px; margin-bottom: -10px;" >
+   <span class="nav-text" style="margin-left: -10px; margin-bottom: -10px;">ABOUT</span>
+  </button>
+
+ 
+
+  <button class="star" data-panel="music">
+    <img src="https://mocksurl.com/assets/uploads/mocks/77-music_logo_photoroom.png?1653" class="nav-icon" alt="music" style="margin-left: 210px; margin-bottom: -320px;">
+    <span class="nav-text" style="margin-left: 30px; margin-bottom: -320px;">MUSIC</span>
+  </button>
+
+  <button class="star" data-link="https://frequincy.lnk.to/YouTube">
+    <img src="https://mocksurl.com/assets/uploads/mocks/29-music_videos_photoroom.png?1535" class="nav-icon" alt="music-videos" style="margin-left: 190px; margin-bottom: -720px;">
+    <span class="nav-text" style="margin-left: 10px; margin-bottom: -720px;">VIDEOS</span>
+  </button>
+
+  <button class="star" data-link="https://yourshopifystore.com">
+     <img src="https://mocksurl.com/assets/uploads/mocks/48-shop_logo_photoroom.png?1455" class="nav-icon" alt="Shop" style="margin-left: 300px; margin-bottom: -1120px;">
+     <span class="nav-text" style="margin-left: 0px; margin-bottom: -1120px;">SHOP</span>
+  </button>
+</div>
+
+<div class="nav right">
+  <button class="star" data-link="https://quincy.vip">
+    <span class="nav-text" style="margin-left: 900px; margin-bottom: -100px;">QUINCY.VIP</span>
+    <img src="https://mocksurl.com/assets/uploads/mocks/55-quincy.vip_logo.png?1812" class="nav-icon" alt="quincy vip" style="margin-left: -1px; margin-bottom: -100px;">
+  </button>
+
+  <button class="star" data-link="https://yourmailinglist.com">
+    <span class="nav-text" style="margin-left: 990px; margin-bottom: -320px;">SIGN UP</span>
+    <img src="https://mocksurl.com/assets/uploads/mocks/40-sign_up_logo_photoroom.png?1809" class="nav-icon" style="margin-left: -px; margin-bottom: -320px;">
+  </button>
+
+  <button class="star" data-panel="socials">
+   <span class="nav-text" style="margin-left: 1030px; margin-bottom: -720px;">SOCIALS</span>
+    <img src="https://mocksurl.com/assets/uploads/mocks/9-socials_logo.png?500" class="nav-icon"  alt="Socials" style="margin-left: -px; margin-bottom: -720px;">
+  </button>
+
+  <button class="star" data-panel="contact">
+    <span class="nav-text" style="margin-left: 940px; margin-bottom: -1120px;">CONTACT</span>
+    <img src="https://mocksurl.com/assets/uploads/mocks/84-contact_logo.png?1736" class="nav-icon" alt="Contact Quincy" style="margin-left: -0px; margin-bottom: -1120px;">
+  </button>
+</div>
+
+
+
+
+<!--<button class="star star-about" data-panel="about">
   <img src="https://mocksurl.com/assets/uploads/mocks/58-about_logo.png?1834" class="nav-icon" alt="About Quincy" >
   <span class="nav-text" style="margin-left: -150px;">ABOUT</span>
 </button>
@@ -421,7 +521,7 @@ html, body {
  <img src="https://mocksurl.com/assets/uploads/mocks/15-shop_logo_ufo.png?850" class="nav-icon" alt="Shop">
   <span class="nav-text" style="margin-left: -150px;">SHOP</span>
 </button>
-
+-->
 
 
 
@@ -467,8 +567,17 @@ document.querySelectorAll(".star").forEach(btn => {
     }
 
     if (panel === "music") {
-      panelBody.innerHTML = `<h2>Music</h2><p>Links coming soon.</p>`;
-    }
+  panelBody.innerHTML = `
+    <h2>Music</h2>
+    <div class="social-grid">
+      <a class="social-btn" href="https://frequincy.lnk.to/QuincyAppleMusic" target="_blank">Apple Music</a>
+      <a class="social-btn" href="https://frequincy.lnk.to/QYTMUSIC" target="_blank">YouTube Music</a>
+      <a class="social-btn" href="https://frequincy.lnk.to/QuincySpotify" target="_blank">Spotify</a>
+      <a class="social-btn" href="https://Frequincy.lnk.to/QuincyTidal" target="_blank">Tidal</a>
+    </div>
+  `;
+}
+
 
    if (panel === "socials") {
   panelBody.innerHTML = `
@@ -522,7 +631,15 @@ document.addEventListener("keydown", e => {
   if (e.key === "Escape") overlay.classList.remove("active");
 });
 
+
+
 </script>
+
+<a href="https://qrewonly.com" class="qrew-brand" target="_blank">
+  <img src="https://mocksurl.com/assets/uploads/mocks/67-qrew_only_photoroom.png?1591" alt="QREW ONLY" style="margin-bottom: -65px;">
+</a>
+
+
 
 </body>
 
