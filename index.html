@@ -502,6 +502,88 @@ html, body {
 
 /* Scale entire scene */
 
+/* =========================
+   MOBILE RESPONSIVE MODE
+========================= */
+@media (max-width: 768px) {
+
+  body {
+    overflow-y: auto;
+  }
+
+  .nav {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .nav .star {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    pointer-events: auto;
+  }
+
+  /* stack buttons */
+  .nav.left,
+  .nav.right {
+    position: absolute;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 18px;
+  }
+
+  .nav.left {
+    top: 10%;
+  }
+
+  .nav.right {
+    bottom: 14%;
+  }
+
+  .star {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+  }
+
+  /* icon first, text on top */
+  .nav-icon {
+    order: 1;
+    width: 52px;
+    height: auto;
+  }
+
+  .nav-text {
+    order: 2;
+    font-size: 14px;
+    letter-spacing: .2em;
+    margin: 0 !important;
+  }
+
+  /* remove all desktop offsets */
+  .nav-icon,
+  .nav-text {
+    margin: 0 !important;
+    transform: none !important;
+  }
+
+  /* shrink globe for phone */
+  .background {
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* move brand logo */
+  .qrew-brand {
+    bottom: 2vh;
+    transform: translateX(-50%) scale(.8);
+  }
+}
 
 
 
