@@ -1,0 +1,464 @@
+* { margin:0; padding:0; box-sizing:border-box; }
+/* Scale entire scene */
+
+html, body {
+  width:100%;
+  height:100%;
+  background:black;
+  overflow:hidden;
+  font-family: system-ui, sans-serif;
+  color:white;
+}
+
+.background,
+.vignette,
+.smoke-layer {
+  pointer-events: none;
+}
+
+
+/* BACKGROUND */
+.background {
+  position:absolute;
+  inset:0;
+  background:url("https://mocksurl.com/assets/uploads/mocks/41-quincy.world.jpeg?1267") center/cover no-repeat;
+  z-index:0;
+}
+
+
+
+.vignette {
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle, transparent 55%, rgba(0,0,0,.75));
+  z-index:1;
+}
+
+/* UFO */
+.ufo {
+  position:absolute;
+  left:8%;
+  bottom:18%;
+  width:140px;
+  z-index:3;
+  animation:ufoFloat 9s ease-in-out infinite;
+  pointer-events:none;
+}
+
+@keyframes ufoFloat {
+  0% { transform:translateY(0); }
+  50% { transform:translateY(-14px); }
+  100% { transform:translateY(0); }
+}
+
+/* STAR NAV */
+.star {
+  position:absolute;
+  background:none;
+  border:none;
+  color:white;
+  font-size:14px;
+  letter-spacing:.5px;
+  cursor:pointer;
+  opacity:.55;
+  z-index:4;
+  transition:.3s ease;
+}
+
+.star:hover { opacity:1; transform:scale(1.06); }
+
+.star-about   { top:30%; left:18%; }
+.star-socials { top:38%; right:20%; }
+.star-contact { top:52%; right:16%; }
+.star-shop    { bottom:28%; left:18%; }
+
+/* OVERLAY (BLACK DIM) */
+.overlay {
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  backdrop-filter:blur(6px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:10;
+}
+
+.overlay.active { display:flex; }
+
+/* PANEL */
+.panel {
+  background:rgba(15,15,15,.95);
+  border-radius:26px;
+  width:90%;
+  max-width:520px;
+  padding:28px;
+  animation:panelIn .25s ease;
+}
+
+@keyframes panelIn {
+  from { opacity:0; transform:translateY(20px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+.close {
+  background:none;
+  border:none;
+  color:white;
+  font-size:20px;
+  float:right;
+  cursor:pointer;
+}
+
+.panel h2 { margin-bottom:18px; }
+
+.social-grid a {
+  display:flex;
+  align-items:center;
+  margin-bottom:14px;
+  text-decoration:none;
+  color:white;
+  opacity:.85;
+}
+
+.social-grid a:hover { opacity:1; }
+
+/* SOCIAL ICON GRID */
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+  transition: transform .25s ease, background .25s ease;
+}
+
+.social-btn:hover {
+  transform: scale(1.03);
+  background: rgba(255,255,255,0.12);
+}
+
+.social-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: white;
+  flex-shrink: 0;
+}
+
+/* PANEL ANIMATION UPGRADE */
+.panel {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: panelReveal .35s ease forwards;
+}
+
+@keyframes panelReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* DEPTH LAYERS */
+.background {
+  transition: transform 0.25s ease-out;
+}
+
+.star {
+  transition: transform 0.3s ease-out, opacity 0.3s ease;
+}
+
+/* AMBIENT STAR TWINKLE */
+.star {
+  animation: twinkle 6s ease-in-out infinite;
+}
+
+.star:nth-child(1) { animation-duration: 7s; }
+.star:nth-child(2) { animation-duration: 9s; }
+.star:nth-child(3) { animation-duration: 8s; }
+.star:nth-child(4) { animation-duration: 10s; }
+
+@keyframes twinkle {
+  0%   { opacity: 0.45; }
+  50%  { opacity: 0.85; }
+  100% { opacity: 0.45; }
+}
+
+
+
+
+.star {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  position: absolute;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  color: white;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  display: flex;
+  gap: 10px;
+  z-index: 20; /* make sure buttons are above overlays */
+  pointer-events: auto; /* ensure they receive clicks */
+}
+
+.star img {
+  filter: brightness(0) invert(1); /* makes dark icons white */
+  opacity: 0.9;
+  width:  70px;       /* adjust size here */
+  height: 70px;
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.4));
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0.75;
+  
+}
+
+.star span {
+  font-size: 14px;
+  letter-spacing: 0.4px;
+}
+
+.star:hover img {
+  transform: scale(1.15);
+  opacity: 1;
+}
+
+
+/* SMOKE LAYER */
+.smoke-layer {
+  position: fixed;
+  top: 0;
+  left: -30%;
+  width: 160%;
+  height: 100%;
+  background: url("https://mocksurl.com/assets/uploads/mocks/85-light_smoke.png?260") center/cover no-repeat;
+  opacity: 0.06; /* very subtle */
+  z-index: 2;
+  pointer-events: none;
+  animation: smokeDrift 10s linear infinite;
+}
+
+@keyframes smokeDrift {
+  from { transform: translateX(0); }
+  to   { transform: translateX(30%); }
+}
+
+
+.star .icon-bg {
+  position: absolute;
+  inset: -20px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.25;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.star .icon-bg img {
+  width: 64px;
+  height: 64px;
+  filter: blur(1px) drop-shadow(0 0 12px rgba(255,255,255,0.5));
+}
+
+/* hover effect */
+.star:hover .icon-bg {
+  opacity: 0.6;
+  transform: scale(1.2);
+}
+
+/* ICON */
+.nav-icon {
+  width: 26px;
+  height: 26px;
+  filter: drop-shadow(0 0 8px rgba(255,255,255,0.6));
+  animation: iconFloat 5s ease-in-out infinite;
+}
+
+/* TEXT */
+.nav-text {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  color: white;
+  -webkit-text-stroke: 0.8px rgba(255,255,255,0.6); /* white trim */
+  text-shadow: 0 0 12px rgba(255,255,255,0.5);
+}
+
+/* HOVER */
+.star:hover .nav-icon {
+  transform: scale(1.15);
+}
+
+.star:hover .nav-text {
+  text-shadow: 0 0 20px rgba(255,255,255,1);
+}
+
+/* ICON FLOAT */
+@keyframes iconFloat {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+.overlay {
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+
+.overlay.active {
+  display: flex !important;
+  opacity: 1;
+}
+
+.qrew-brand {
+  position: fixed;
+  left: 50%;
+  bottom: 4vh;          /* pushes into the black void */
+  transform: translateX(-50%);
+  z-index: 2;          /* below nav, above stars */
+  pointer-events: auto;
+  opacity: 0.85;
+  transition: transform .3s ease, opacity .3s ease;
+}
+
+.qrew-brand:hover {
+  opacity: 1;
+  transform: translateX(-50%) scale(1.06);
+}
+
+.qrew-brand img {
+  width: 120px;
+  max-width: 30vw;
+}
+
+.nav-icon.about{
+  margin-left: 350px;
+  margin-bottom: -10px;
+}
+.nav-text.about{
+  margin-left: 0px;
+  margin-bottom: -10px;
+}
+
+.nav-icon.music{
+  margin-left: 250px;
+  margin-bottom: -320px;
+}
+
+.nav-text.music{
+  margin-left: -0px;
+  margin-bottom: -320px;
+}
+.nav-icon.videos{
+  margin-left: 200px; 
+  margin-bottom: -720px;
+}
+.nav-text.videos{
+   margin-left: 0px;
+  margin-bottom: -720px;
+}
+
+.nav-icon.shop{
+  margin-left: 300px; 
+  margin-bottom: -1120px;
+
+}
+.nav-text.shop{
+  margin-left: 0px;
+  margin-bottom: -1120px;
+}
+
+.nav-icon.quincy-vip{
+  margin-left: 0px;
+  margin-bottom: -100px;
+}
+.nav-text.quincy-vip{
+   margin-left: 900px; 
+   margin-bottom: -100px;
+}
+
+.nav-text.yourmailinglist{
+  margin-left: 990px;
+  margin-bottom: -320px;
+}
+.nav-icon.yourmailinglist{
+  margin-left: 0px;
+  margin-bottom: -320px;
+}
+.nav-text.socials{
+  margin-left: 1030px;
+  margin-bottom: -720px;
+}
+.nav-icon.socials{
+  margin-left: -0px; 
+  margin-bottom: -720px;
+}
+
+.nav-text.contact{
+  margin-left: 940px;
+  margin-bottom: -1120px;
+}
+.nav-icon.contact{
+   margin-left: -0px;
+   margin-bottom: -1120px;
+}
+
+
+
+.star {
+  position: absolute;
+  pointer-events: auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* icon + text group */
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* left side order */
+.nav.left .nav-item {
+  flex-direction: row; /* ICON → WORD */
+}
+
+/* right side order */
+.nav.right .nav-item {
+  flex-direction: row-reverse; /* WORD ← ICON */
+}
+
+/* visuals */
+.nav-icon {
+  width: 52px;
+  filter: drop-shadow(0 0 8px rgba(255,255,255,0.6));
+}
+
+.nav-text {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  -webkit-text-stroke: 0.6px rgba(255,255,255,0.6);
+  text-shadow: 0 0 12px rgba(255,255,255,0.6);
+}

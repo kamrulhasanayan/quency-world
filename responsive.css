@@ -1,0 +1,110 @@
+@media (max-width: 768px) {
+  .nav {
+    top: 15%;
+    width: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: row;
+    justify-content: space-around;
+    transform: none;
+  }
+
+  .nav.left, .nav.right {
+    position: static;
+    flex-direction: row;
+  }
+
+  .star {
+    flex-direction: column !important;
+    gap: 6px;
+  }
+
+  .nav-text {
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .nav-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+
+/* =========================
+   MOBILE LAYOUT (0–768px)
+   ========================= */
+@media (max-width: 768px) {
+
+  /* Reset all desktop offsets */
+  .nav-icon,
+  .nav-text {
+    margin: 0 !important;
+  }
+
+  /* Make whole nav center */
+  .nav {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+  }
+
+  .star {
+    pointer-events: auto;
+    position: absolute;
+    display: flex;
+    flex-direction: column;   /* ICON above WORD */
+    align-items: center;
+    gap: 6px;
+  }
+
+  .nav-icon {
+    width: 46px;
+    height: 46px;
+  }
+
+  .nav-text {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-align: center;
+  }
+
+  /* Place buttons around globe */
+  .nav.left .star:nth-child(1) { top: 5%; left: 27%; transform: translateX(-50%); }
+  .nav.left .star:nth-child(2) { top: 30%; left: 17%; }
+  .nav.left .star:nth-child(3) { top: 50%; left: 16%; }
+  .nav.left .star:nth-child(4) { top: 80%; left: 25%; }
+
+  .nav.right .star:nth-child(1) { top: 1%; right: 25%; transform: translateX(50%); }
+  .nav.right .star:nth-child(2) { top: 30%; right: 16%; }
+  .nav.right .star:nth-child(3) { top: 50%; right: 18%; }
+  .nav.right .star:nth-child(4) { top: 80%; right: 25%; }
+
+  /* Globe scale */
+  .background {
+    background-size: 100% auto;
+    background-position: center;
+  }
+
+  /* Brand logo */
+  .qrew-brand img {
+    width: 90px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-item {
+    flex-direction: column !important; /* ICON on top, WORD under */
+    gap: 6px;
+  }
+
+  .nav-text {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+  }
+
+  .nav-icon {
+    width: 42px;
+  }
+}
