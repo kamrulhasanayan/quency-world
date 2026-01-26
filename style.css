@@ -65,12 +65,7 @@ html, body {
   transition:.3s ease;
 }
 
-.star:hover { opacity:1; transform:scale(1.06); }
 
-.star-about   { top:30%; left:18%; }
-.star-socials { top:38%; right:20%; }
-.star-contact { top:52%; right:16%; }
-.star-shop    { bottom:28%; left:18%; }
 
 /* OVERLAY (BLACK DIM) */
 .overlay {
@@ -110,7 +105,7 @@ html, body {
   cursor:pointer;
 }
 
-.panel h2 { margin-bottom:18px; }
+/*social button start*/
 
 .social-grid a {
   display:flex;
@@ -156,46 +151,7 @@ html, body {
   flex-shrink: 0;
 }
 
-/* PANEL ANIMATION UPGRADE */
-.panel {
-  opacity: 0;
-  transform: translateY(24px);
-  animation: panelReveal .35s ease forwards;
-}
-
-@keyframes panelReveal {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* DEPTH LAYERS */
-.background {
-  transition: transform 0.25s ease-out;
-}
-
-.star {
-  transition: transform 0.3s ease-out, opacity 0.3s ease;
-}
-
-/* AMBIENT STAR TWINKLE */
-.star {
-  animation: twinkle 6s ease-in-out infinite;
-}
-
-.star:nth-child(1) { animation-duration: 7s; }
-.star:nth-child(2) { animation-duration: 9s; }
-.star:nth-child(3) { animation-duration: 8s; }
-.star:nth-child(4) { animation-duration: 10s; }
-
-@keyframes twinkle {
-  0%   { opacity: 0.45; }
-  50%  { opacity: 0.85; }
-  100% { opacity: 0.45; }
-}
-
-
+/*social button end*/
 
 
 .star {
@@ -262,29 +218,6 @@ html, body {
 }
 
 
-.star .icon-bg {
-  position: absolute;
-  inset: -20px;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0.25;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.star .icon-bg img {
-  width: 64px;
-  height: 64px;
-  filter: blur(1px) drop-shadow(0 0 12px rgba(255,255,255,0.5));
-}
-
-/* hover effect */
-.star:hover .icon-bg {
-  opacity: 0.6;
-  transform: scale(1.2);
-}
-
 /* ICON */
 .nav-icon {
   width: 26px;
@@ -299,8 +232,8 @@ html, body {
   font-weight: 800;
   letter-spacing: 0.18em;
   color: white;
-  -webkit-text-stroke: 0.8px rgba(255,255,255,0.6); /* white trim */
-  text-shadow: 0 0 12px rgba(255,255,255,0.5);
+  -webkit-text-stroke: 0.8px rgb(255, 255, 255); /* white trim */
+  text-shadow: 0 0 12px rgb(255, 255, 255);
 }
 
 /* HOVER */
@@ -424,41 +357,71 @@ html, body {
 
 
 
-.star {
-  position: absolute;
-  pointer-events: auto;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-/* icon + text group */
-.nav-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-/* left side order */
-.nav.left .nav-item {
-  flex-direction: row; /* ICON → WORD */
-}
-
-/* right side order */
-.nav.right .nav-item {
-  flex-direction: row-reverse; /* WORD ← ICON */
-}
-
-/* visuals */
-.nav-icon {
-  width: 52px;
-  filter: drop-shadow(0 0 8px rgba(255,255,255,0.6));
-}
-
+/* Base nav text */
 .nav-text {
-  font-size: 16px;
+  color: #ffffff;
   font-weight: 800;
-  letter-spacing: 0.18em;
-  -webkit-text-stroke: 0.6px rgba(255,255,255,0.6);
-  text-shadow: 0 0 12px rgba(255,255,255,0.6);
+  letter-spacing: 0.10em;
+
+  /* black border effect */
+  -webkit-text-stroke: 1px #000;
+  text-stroke: 1px #000;
+
+  /* fallback for browsers without stroke */
+  text-shadow:
+    -1px -1px 0 #000,
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000;
+
+  transition: filter 0.25s ease, transform 0.25s ease;
+}
+
+/* Hover glow */
+.star:hover .nav-text {
+  filter: brightness(1.4);
+  transform: scale(1.05);
+}
+
+/* Icon hover glow */
+.star:hover .nav-icon {
+  filter: brightness(1.4) drop-shadow(0 0 6px rgb(255, 255, 255));
+}
+
+
+/* TEXT glow */
+.nav-text {
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+
+  text-shadow:
+    0 0 3px rgba(0,0,0,0.9),
+    0 0 6px rgba(0,0,0,0.8),
+    0 0 10px rgba(0,0,0,0.7);
+
+  transition: text-shadow 0.25s ease, filter 0.25s ease, transform 0.25s ease;
+}
+
+/* ICON glow */
+.nav-icon {
+  filter:
+    drop-shadow(0 0 4px rgba(0,0,0,0.9))
+    drop-shadow(0 0 8px rgba(0,0,0,0.7));
+
+  transition: filter 0.25s ease, transform 0.25s ease;
+}
+.star:hover .nav-text {
+  text-shadow:
+    0 0 4px rgba(255,255,255,0.9),
+    0 0 8px rgba(255,255,255,0.8),
+    0 0 14px rgba(255,255,255,0.7);
+  transform: scale(1.05);
+}
+
+.star:hover .nav-icon {
+  filter:
+    drop-shadow(0 0 6px rgba(255,255,255,0.9))
+    drop-shadow(0 0 14px rgba(255,255,255,0.8));
+  transform: scale(1.08);
 }

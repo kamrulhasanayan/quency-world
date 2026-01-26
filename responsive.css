@@ -29,82 +29,79 @@
     height: 42px;
   }
 
-
-/* =========================
-   MOBILE LAYOUT (0–768px)
-   ========================= */
-@media (max-width: 768px) {
-
-  /* Reset all desktop offsets */
-  .nav-icon,
-  .nav-text {
-    margin: 0 !important;
-  }
-
-  /* Make whole nav center */
-  .nav {
-    position: absolute;
-    inset: 0;
-    display: grid;
-    place-items: center;
-    pointer-events: none;
-  }
-
-  .star {
-    pointer-events: auto;
-    position: absolute;
-    display: flex;
-    flex-direction: column;   /* ICON above WORD */
-    align-items: center;
-    gap: 6px;
-  }
-
-  .nav-icon {
-    width: 46px;
-    height: 46px;
-  }
-
-  .nav-text {
-    font-size: 12px;
-    letter-spacing: 0.12em;
-    text-align: center;
-  }
-
-  /* Place buttons around globe */
-  .nav.left .star:nth-child(1) { top: 5%; left: 27%; transform: translateX(-50%); }
-  .nav.left .star:nth-child(2) { top: 30%; left: 17%; }
-  .nav.left .star:nth-child(3) { top: 50%; left: 16%; }
-  .nav.left .star:nth-child(4) { top: 80%; left: 25%; }
-
-  .nav.right .star:nth-child(1) { top: 1%; right: 25%; transform: translateX(50%); }
-  .nav.right .star:nth-child(2) { top: 30%; right: 16%; }
-  .nav.right .star:nth-child(3) { top: 50%; right: 18%; }
-  .nav.right .star:nth-child(4) { top: 80%; right: 25%; }
-
-  /* Globe scale */
-  .background {
-    background-size: 100% auto;
-    background-position: center;
-  }
-
-  /* Brand logo */
-  .qrew-brand img {
-    width: 90px;
-  }
+.nav-icon.videos{
+  margin-left: 270px; 
+  margin-bottom: 150px;
+}
+.nav-text.videos{
+   margin-left: 0px;
+  margin-bottom: 0px;
 }
 
-@media (max-width: 768px) {
-  .nav-item {
-    flex-direction: column !important; /* ICON on top, WORD under */
-    gap: 6px;
-  }
+.nav-icon.music{
+  margin-left: 0px;
+  margin-bottom: 0px;
+}
 
-  .nav-text {
-    font-size: 12px;
-    letter-spacing: 0.12em;
-  }
+.nav-text.music{
+  margin-left: 140px;
+  margin-top: 30px;
+}
 
-  .nav-icon {
-    width: 42px;
-  }
+.nav-icon.about{
+  margin-left: 122px;
+  margin-bottom: 0px;
+}
+.nav-text.about{
+  margin-left: 190px;
+  margin-top: -50px;
+}
+
+.nav-icon.shop{
+  margin-left: 0px; 
+  margin-bottom: 0px;
+
+}
+.nav-text.shop{
+  margin-left: 220px;
+        margin-top: 250px;
+}
+
+.nav-icon.quincy-vip{
+  margin-left: 0px;
+  margin-top: 0px;
+}
+.nav-text.quincy-vip{
+   margin-left: 526px;
+   margin-top: 26px;
+}
+
+.nav-text.yourmailinglist{
+  margin-left: 570px;
+  margin-top: 100px;
+}
+.nav-icon.yourmailinglist{
+  margin-left: 0px;
+  margin-bottom: 0px;
+}
+.nav-text.socials{
+  margin-left: 570px;
+  margin-top: 220px;
+}
+
+.nav-icon.socials{
+  margin-left: 0px; 
+  margin-bottom: 0px;
+}
+
+.nav-text.contact{
+  margin-left: 500px;
+  margin-top: 330px;
+}
+.nav-icon.contact{
+   margin-left: 0px;
+   margin-bottom: 0px;
+}
+
+
 }
