@@ -11,7 +11,6 @@ html, body {
 }
 
 .background,
-.vignette,
 .smoke-layer {
   pointer-events: none;
 }
@@ -26,46 +25,7 @@ html, body {
 }
 
 
-
-.vignette {
-  position:absolute;
-  inset:0;
-  background:radial-gradient(circle, transparent 55%, rgba(0,0,0,.75));
-  z-index:1;
-}
-
-/* UFO */
-.ufo {
-  position:absolute;
-  left:8%;
-  bottom:18%;
-  width:140px;
-  z-index:3;
-  animation:ufoFloat 9s ease-in-out infinite;
-  pointer-events:none;
-}
-
-@keyframes ufoFloat {
-  0% { transform:translateY(0); }
-  50% { transform:translateY(-14px); }
-  100% { transform:translateY(0); }
-}
-
-/* STAR NAV */
-.star {
-  position:absolute;
-  background:none;
-  border:none;
-  color:white;
-  font-size:14px;
-  letter-spacing:.5px;
-  cursor:pointer;
-  opacity:.55;
-  z-index:4;
-  transition:.3s ease;
-}
-
-
+/*social button start*/
 
 /* OVERLAY (BLACK DIM) */
 .overlay {
@@ -81,6 +41,7 @@ html, body {
 
 .overlay.active { display:flex; }
 
+
 /* PANEL */
 .panel {
   background:rgba(15,15,15,.95);
@@ -95,17 +56,6 @@ html, body {
   from { opacity:0; transform:translateY(20px); }
   to { opacity:1; transform:translateY(0); }
 }
-
-.close {
-  background:none;
-  border:none;
-  color:white;
-  font-size:20px;
-  float:right;
-  cursor:pointer;
-}
-
-/*social button start*/
 
 .social-grid a {
   display:flex;
@@ -168,7 +118,7 @@ html, body {
   cursor: pointer;
   text-align: center;
   color: white;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.15em;
   display: flex;
   gap: 10px;
@@ -217,71 +167,6 @@ html, body {
   to   { transform: translateX(30%); }
 }
 
-
-/* ICON */
-.nav-icon {
-  width: 26px;
-  height: 26px;
-  filter: drop-shadow(0 0 8px rgba(255,255,255,0.6));
-  animation: iconFloat 5s ease-in-out infinite;
-}
-
-/* TEXT */
-.nav-text {
-  font-size: 18px;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-  color: white;
-  -webkit-text-stroke: 0.8px rgb(255, 255, 255); /* white trim */
-  text-shadow: 0 0 12px rgb(255, 255, 255);
-}
-
-/* HOVER */
-.star:hover .nav-icon {
-  transform: scale(1.15);
-}
-
-.star:hover .nav-text {
-  text-shadow: 0 0 20px rgba(255,255,255,1);
-}
-
-/* ICON FLOAT */
-@keyframes iconFloat {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-  100% { transform: translateY(0); }
-}
-
-.overlay {
-  opacity: 0;
-  transition: opacity .3s ease;
-}
-
-.overlay.active {
-  display: flex !important;
-  opacity: 1;
-}
-
-.qrew-brand {
-  position: fixed;
-  left: 50%;
-  bottom: 4vh;          /* pushes into the black void */
-  transform: translateX(-50%);
-  z-index: 2;          /* below nav, above stars */
-  pointer-events: auto;
-  opacity: 0.85;
-  transition: transform .3s ease, opacity .3s ease;
-}
-
-.qrew-brand:hover {
-  opacity: 1;
-  transform: translateX(-50%) scale(1.06);
-}
-
-.qrew-brand img {
-  width: 120px;
-  max-width: 30vw;
-}
 
 .nav-icon.about{
   margin-left: 350px;
@@ -365,7 +250,7 @@ html, body {
 
   /* black border effect */
   -webkit-text-stroke: 1px #000;
-  text-stroke: 1px #000;
+  
 
   /* fallback for browsers without stroke */
   text-shadow:
@@ -389,39 +274,23 @@ html, body {
 }
 
 
-/* TEXT glow */
-.nav-text {
-  color: #fff;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-
-  text-shadow:
-    0 0 3px rgba(0,0,0,0.9),
-    0 0 6px rgba(0,0,0,0.8),
-    0 0 10px rgba(0,0,0,0.7);
-
-  transition: text-shadow 0.25s ease, filter 0.25s ease, transform 0.25s ease;
+.qrew-brand {
+  position: fixed;
+  left: 50%;
+  bottom: 4vh;          /* pushes into the black void */
+  transform: translateX(-50%);
+  z-index: 2;          /* below nav, above stars */
+  pointer-events: auto;
+  opacity: 0.85;
+  transition: transform .3s ease, opacity .3s ease;
 }
 
-/* ICON glow */
-.nav-icon {
-  filter:
-    drop-shadow(0 0 4px rgba(0,0,0,0.9))
-    drop-shadow(0 0 8px rgba(0,0,0,0.7));
-
-  transition: filter 0.25s ease, transform 0.25s ease;
-}
-.star:hover .nav-text {
-  text-shadow:
-    0 0 4px rgba(255,255,255,0.9),
-    0 0 8px rgba(255,255,255,0.8),
-    0 0 14px rgba(255,255,255,0.7);
-  transform: scale(1.05);
+.qrew-brand:hover {
+  opacity: 1;
+  transform: translateX(-50%) scale(1.06);
 }
 
-.star:hover .nav-icon {
-  filter:
-    drop-shadow(0 0 6px rgba(255,255,255,0.9))
-    drop-shadow(0 0 14px rgba(255,255,255,0.8));
-  transform: scale(1.08);
+.qrew-brand img {
+  width: 120px;
+  max-width: 30vw;
 }

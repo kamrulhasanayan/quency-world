@@ -1,107 +1,128 @@
-@media (max-width: 768px) {
-  .nav {
-    top: 15%;
-    width: 100%;
-    left: 0;
-    right: 0;
-    flex-direction: row;
-    justify-content: space-around;
-    transform: none;
+/* ================================
+   RESPONSIVE LAYOUT OVERRIDES
+================================ */
+
+/* ---------- Tablets & Small Laptops ---------- */
+@media (max-width: 1200px) {
+
+  .star img {
+    width: 55px;
+    height: 55px;
   }
 
-  .nav.left, .nav.right {
-    position: static;
-    flex-direction: row;
+  .star span {
+    font-size: 12px;
+  }
+
+  .nav-text.quincy-vip,
+  .nav-text.yourmailinglist,
+  .nav-text.socials,
+  .nav-text.contact {
+    margin-left: 900px !important;
+  }
+}
+
+/* ---------- Tablets ---------- */
+@media (max-width: 900px) {
+
+  .star img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .star span {
+    font-size: 11px;
+  }
+
+  /* Pull right nav inward */
+  .nav-text.quincy-vip,
+  .nav-text.yourmailinglist,
+  .nav-text.socials,
+  .nav-text.contact {
+    margin-left: 520px !important;
+  }
+}
+
+/* ---------- Mobile Layout ---------- */
+@media (max-width: 680px) {
+
+  body {
+    overflow-y: auto;
+  }
+
+  /* Stack navs */
+  .nav {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    bottom: 10vh;
+    left: 0;
+    z-index: 30;
+  }
+
+  .nav.left {
+    bottom: 18vh;
+  }
+
+  .nav.right {
+    bottom: 8vh;
   }
 
   .star {
-    flex-direction: column !important;
+    position: relative !important;
+    margin: 0 !important;
+    flex-direction: column;
     gap: 6px;
   }
 
+  /* Reset all crazy margins */
+  .nav-icon,
   .nav-text {
-    font-size: 12px;
-    text-align: center;
+    margin: 0 !important;
   }
 
-  .nav-icon {
+  .star img {
     width: 42px;
     height: 42px;
   }
 
-.nav-icon.videos{
-  margin-left: 270px; 
-  margin-bottom: 150px;
-}
-.nav-text.videos{
-   margin-left: 0px;
-  margin-bottom: 0px;
+  .star span {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+  }
+
+  /* Overlay panel */
+  .panel {
+    width: 92%;
+    padding: 20px;
+  }
+
+  .social-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Logo */
+  .qrew-brand img {
+    width: 90px;
+  }
 }
 
-.nav-icon.music{
-  margin-left: 0px;
-  margin-bottom: 0px;
-}
+/* ---------- Very Small Phones ---------- */
+@media (max-width: 400px) {
 
-.nav-text.music{
-  margin-left: 140px;
-  margin-top: 30px;
-}
+  .star img {
+    width: 36px;
+    height: 36px;
+  }
 
-.nav-icon.about{
-  margin-left: 122px;
-  margin-bottom: 0px;
-}
-.nav-text.about{
-  margin-left: 190px;
-  margin-top: -50px;
-}
+  .star span {
+    font-size: 9px;
+  }
 
-.nav-icon.shop{
-  margin-left: 0px; 
-  margin-bottom: 0px;
-
-}
-.nav-text.shop{
-  margin-left: 220px;
-        margin-top: 250px;
-}
-
-.nav-icon.quincy-vip{
-  margin-left: 0px;
-  margin-top: 0px;
-}
-.nav-text.quincy-vip{
-   margin-left: 526px;
-   margin-top: 26px;
-}
-
-.nav-text.yourmailinglist{
-  margin-left: 570px;
-  margin-top: 100px;
-}
-.nav-icon.yourmailinglist{
-  margin-left: 0px;
-  margin-bottom: 0px;
-}
-.nav-text.socials{
-  margin-left: 570px;
-  margin-top: 220px;
-}
-
-.nav-icon.socials{
-  margin-left: 0px; 
-  margin-bottom: 0px;
-}
-
-.nav-text.contact{
-  margin-left: 500px;
-  margin-top: 330px;
-}
-.nav-icon.contact{
-   margin-left: 0px;
-   margin-bottom: 0px;
+  .qrew-brand img {
+    width: 75px;
+  }
 }
 
 
-}
