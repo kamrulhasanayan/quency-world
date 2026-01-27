@@ -2,8 +2,127 @@
    RESPONSIVE LAYOUT OVERRIDES
 ================================ */
 
-/* ---------- Tablets & Small Laptops ---------- */
+/* ---------- Large Tablets & Small Laptops ---------- */
+@media (max-width: 1400px) {
+  .nav.left {
+    left: 5%;
+  }
+  
+  .nav.right {
+    right: 5%;
+  }
+  
+  /* Adjust circular positioning for smaller screens */
+  .nav.left .star:nth-child(1) {
+    top: -280px;
+    left: 220px;
+  }
+  
+  .nav.left .star:nth-child(2) {
+    top: -130px;
+    left: 145px;
+  }
+  
+  .nav.left .star:nth-child(3) {
+    top: 30px;
+    left: 120px;
+  }
+  
+  .nav.left .star:nth-child(4) {
+    top: 180px;
+    left: 200px;
+  }
+  
+  .nav.right .star:nth-child(1) {
+    top: -280px;
+    right: 175px;
+  }
+  
+  .nav.right .star:nth-child(2) {
+    top: -100px;
+    right: 120px;
+  }
+  
+  .nav.right .star:nth-child(3) {
+    top: 50px;
+    right: 130px;
+  }
+  
+  .nav.right .star:nth-child(4) {
+    top: 180px;
+    right: 175px;
+  }
+}
+
 @media (max-width: 1200px) {
+  .nav.left {
+    left: 3%;
+  }
+  
+  .nav.right {
+    right: 3%;
+  }
+
+  .star img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .star span {
+    font-size: 13px;
+  }
+  
+  /* Tighten circular positioning */
+  .nav.left .star:nth-child(1) {
+    top: -250px;
+    left: 200px;
+  }
+  
+  .nav.left .star:nth-child(2) {
+    top: -120px;
+    left: 130px;
+  }
+  
+  .nav.left .star:nth-child(3) {
+    top: 30px;
+    left: 120px;
+  }
+  
+  .nav.left .star:nth-child(4) {
+    top: 180px;
+    left: 220px;
+  }
+  
+  .nav.right .star:nth-child(1) {
+    top: -250px;
+    right: 150px;
+  }
+  
+  .nav.right .star:nth-child(2) {
+    top: -100px;
+    right: 100px;
+  }
+  
+  .nav.right .star:nth-child(3) {
+    top: 50px;
+    right: 120px;
+  }
+  
+  .nav.right .star:nth-child(4) {
+    top: 170px;
+    right: 180px;
+  }
+}
+
+/* ---------- Tablets ---------- */
+@media (max-width: 992px) {
+  .nav.left {
+    left: 2%;
+  }
+  
+  .nav.right {
+    right: 2%;
+  }
 
   .star img {
     width: 55px;
@@ -13,116 +132,253 @@
   .star span {
     font-size: 12px;
   }
-
-  .nav-text.quincy-vip,
-  .nav-text.yourmailinglist,
-  .nav-text.socials,
-  .nav-text.contact {
-    margin-left: 900px !important;
+  
+  /* Further tighten circular positioning */
+  .nav.left .star:nth-child(1) {
+    top: -200px;
+    left: 150px;
   }
-}
-
-/* ---------- Tablets ---------- */
-@media (max-width: 900px) {
-
-  .star img {
-    width: 50px;
-    height: 50px;
+  
+  .nav.left .star:nth-child(2) {
+    top: -100px;
+    left: 110px;
   }
-
-  .star span {
-    font-size: 11px;
+  
+  .nav.left .star:nth-child(3) {
+    top: 30px;
+    left: 90px;
   }
-
-  /* Pull right nav inward */
-  .nav-text.quincy-vip,
-  .nav-text.yourmailinglist,
-  .nav-text.socials,
-  .nav-text.contact {
-    margin-left: 520px !important;
+  
+  .nav.left .star:nth-child(4) {
+    top: 150px;
+    left: 170px;
   }
+  
+  .nav.right .star:nth-child(1) {
+    top: -200px;
+    right: 110px;
+  }
+  
+  .nav.right .star:nth-child(2) {
+    top: -80px;
+    right: 90px;
+  }
+  
+  .nav.right .star:nth-child(3) {
+    top: 50px;
+    right: 100px;
+  }
+  
+  .nav.right .star:nth-child(4) {
+    top: 150px;
+    right: 140px;
+  }
+ 
 }
 
 /* ---------- Mobile Layout ---------- */
-@media (max-width: 680px) {
-
-  body {
-    overflow-y: auto;
-  }
-
-  /* Stack navs */
-  .nav {
-    position: fixed;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    bottom: 10vh;
-    left: 0;
-    z-index: 30;
-  }
-
+@media (max-width: 768px) {
   .nav.left {
-    bottom: 18vh;
+    left: 2%;
   }
-
+  
   .nav.right {
-    bottom: 8vh;
-  }
-
-  .star {
-    position: relative !important;
-    margin: 0 !important;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  /* Reset all crazy margins */
-  .nav-icon,
-  .nav-text {
-    margin: 0 !important;
+    right: 2%;
   }
 
   .star img {
-    width: 42px;
-    height: 42px;
+    width: 55px;
+    height: 55px;
   }
 
   .star span {
-    font-size: 10px;
-    letter-spacing: 0.08em;
+    font-size: 12px;
   }
-
-  /* Overlay panel */
-  .panel {
-    width: 92%;
-    padding: 20px;
+  
+  /* Further tighten circular positioning */
+  .nav.left .star:nth-child(1) {
+    top: -200px;
+    left: 100px;
   }
-
-  .social-grid {
-    grid-template-columns: 1fr;
+  
+  .nav.left .star:nth-child(2) {
+    top: -100px;
+    left: 30px;
   }
-
-  /* Logo */
-  .qrew-brand img {
-    width: 90px;
+  
+  .nav.left .star:nth-child(3) {
+    top: 0px;
+    left: 10px;
   }
+  
+  .nav.left .star:nth-child(4) {
+    top: 130px;
+    left: 80px;
+  }
+  
+  .nav.right .star:nth-child(1) {
+    top: -200px;
+    right: 50px;
+  }
+  
+  .nav.right .star:nth-child(2) {
+    top: -100px;
+    right: 10px;
+  }
+  
+  .nav.right .star:nth-child(3) {
+    top: 0px;
+    right: 10px;
+  }
+  
+  .nav.right .star:nth-child(4) {
+    top: 150px;
+    right: 80px;
+  }
+ 
 }
-
 /* ---------- Very Small Phones ---------- */
-@media (max-width: 400px) {
+@media (max-width: 576px) {
+  .nav.left {
+    left: 2%;
+  }
+  
+  .nav.right {
+    right: 2%;
+  }
 
   .star img {
-    width: 36px;
-    height: 36px;
+    width: 55px;
+    height: 55px;
   }
 
   .star span {
-    font-size: 9px;
+    font-size: 12px;
   }
+  
+  /* Further tighten circular positioning */
+  .nav.left .star:nth-child(1) {
+    top: -215px;
+    left: 25px;
+  }
+  
+  .nav.left .star:nth-child(2) {
+    top: -100px;
+    left: -10px;
+  }
+  
+  .nav.left .star:nth-child(3) {
+    top: 50px;
+    left: -10px;
+  }
+  
+  .nav.left .star:nth-child(4) {
+    top: 170px;
+    left: 50px;
+  }
+  
+  .nav.right .star:nth-child(1) {
+    top: -220px;
+    right: -15px;
+  }
+  
+  .nav.right .star:nth-child(2) {
+    top: -100px;
+    right: -10px;
+  }
+  
+  .nav.right .star:nth-child(3) {
+    top: 50px;
+    right: -10px;
+  }
+  
+  .nav.right .star:nth-child(4) {
+    top: 170px;
+    right: 10px;
+  }
+  
+ .qrew-brand img {
+  width: 120px;
+  max-width: 30vw;
+ 
+}
 
-  .qrew-brand img {
-    width: 75px;
+  
+}
+  
+  .panel {
+    padding: 16px;
+  }
+  
+  .panel h2 {
+    font-size: 18px;
+  }
+  
+  .social-btn {
+    padding: 10px 12px;
+    font-size: 12px;
   }
 }
 
+/* ---------- Extra Small Phones ---------- */
+@media (max-width: 350px) {
+  .nav.left {
+    left: 2%;
+  }
+  
+  .nav.right {
+    right: 2%;
+  }
 
+  .star img {
+    width: 55px;
+    height: 55px;
+  }
+
+  .star span {
+    font-size: 12px;
+  }
+  
+  /* Further tighten circular positioning */
+  .nav.left .star:nth-child(1) {
+    top: -320px;
+    left: 270px;
+  }
+  
+  .nav.left .star:nth-child(2) {
+    top: -170px;
+    left: 170px;
+  }
+  
+  .nav.left .star:nth-child(3) {
+    top: 0px;
+    left: 120px;
+  }
+  
+  .nav.left .star:nth-child(4) {
+    top: 200px;
+    left: 220px;
+  }
+  
+  .nav.right .star:nth-child(1) {
+    top: -320px;
+    right: 200px;
+  }
+  
+  .nav.right .star:nth-child(2) {
+    top: -170px;
+    right: 140px;
+  }
+  
+  .nav.right .star:nth-child(3) {
+    top: 0px;
+    right: 120px;
+  }
+  
+  .nav.right .star:nth-child(4) {
+    top: 220px;
+    right: 210px;
+  }
+  
+ 
+}

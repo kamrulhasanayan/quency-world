@@ -1,5 +1,4 @@
 * { margin:0; padding:0; box-sizing:border-box; }
-/* Scale entire scene */
 
 html, body {
   width:100%;
@@ -15,7 +14,6 @@ html, body {
   pointer-events: none;
 }
 
-
 /* BACKGROUND */
 .background {
   position:absolute;
@@ -23,9 +21,6 @@ html, body {
   background:url("https://mocksurl.com/assets/uploads/mocks/41-quincy.world.jpeg?1267") center/cover no-repeat;
   z-index:0;
 }
-
-
-/*social button start*/
 
 /* OVERLAY (BLACK DIM) */
 .overlay {
@@ -41,7 +36,6 @@ html, body {
 
 .overlay.active { display:flex; }
 
-
 /* PANEL */
 .panel {
   background:rgba(15,15,15,.95);
@@ -50,6 +44,7 @@ html, body {
   max-width:520px;
   padding:28px;
   animation:panelIn .25s ease;
+  position: relative;
 }
 
 @keyframes panelIn {
@@ -57,16 +52,36 @@ html, body {
   to { opacity:1; transform:translateY(0); }
 }
 
-.social-grid a {
-  display:flex;
-  align-items:center;
-  margin-bottom:14px;
-  text-decoration:none;
-  color:white;
-  opacity:.85;
+#close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
 }
 
-.social-grid a:hover { opacity:1; }
+#close:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.panel h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.panel p {
+  line-height: 1.6;
+}
 
 /* SOCIAL ICON GRID */
 .social-grid {
@@ -101,52 +116,135 @@ html, body {
   flex-shrink: 0;
 }
 
-/*social button end*/
+/* NAVIGATION CONTAINER - CIRCULAR LAYOUT */
+.nav {
+  position: fixed;
+  z-index: 20;
+  pointer-events: none;
+}
 
+/* Position navs to create circular layout around center */
+.nav.left,
+.nav.right {
+  top: 50%;
+  transform: translateY(-50%);
+}
 
+.nav.left {
+  left: 8%;
+}
+
+.nav.right {
+  right: 8%;
+}
+
+/* STAR BUTTONS - CIRCULAR POSITIONING */
 .star {
+  background: none;
+  border: none;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 8px;
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
+  gap: 12px;
+  pointer-events: auto;
   position: absolute;
-  background: none;
-  border: none;
-  cursor: pointer;
-  text-align: center;
-  color: white;
-  font-weight: 800;
-  letter-spacing: 0.15em;
-  display: flex;
-  gap: 10px;
-  z-index: 20; /* make sure buttons are above overlays */
-  pointer-events: auto; /* ensure they receive clicks */
+  left: 0;
+}
+
+/* LEFT SIDE BUTTONS - Positioned in circular arc */
+.nav.left .star {
+  flex-direction: row;
+}
+
+.nav.left .star:nth-child(1) {
+  /* ABOUT - top left */
+  top: -200px;
+  left: 50px;
+}
+
+.nav.left .star:nth-child(2) {
+  /* MUSIC - middle left */
+  top: -50px;
+  left: 0px;
+}
+
+.nav.left .star:nth-child(3) {
+  /* VIDEOS - lower middle left */
+  top: 100px;
+  left: 20px;
+}
+
+.nav.left .star:nth-child(4) {
+  /* SHOP - bottom left */
+  top: 250px;
+  left: 80px;
+}
+
+/* RIGHT SIDE BUTTONS - Positioned in circular arc */
+.nav.right .star {
+  flex-direction: row-reverse;
+  right: 0;
+  left: auto;
+}
+
+.nav.right .star:nth-child(1) {
+  /* QUINCY.VIP - top right */
+  top: -200px;
+  right: 50px;
+}
+
+.nav.right .star:nth-child(2) {
+  /* SIGN UP - middle right */
+  top: -50px;
+  right: 0px;
+}
+
+.nav.right .star:nth-child(3) {
+  /* SOCIALS - lower middle right */
+  top: 100px;
+  right: 20px;
+}
+
+.nav.right .star:nth-child(4) {
+  /* CONTACT - bottom right */
+  top: 250px;
+  right: 80px;
 }
 
 .star img {
-  filter: brightness(0) invert(1); /* makes dark icons white */
-  opacity: 0.9;
-  width:  70px;       /* adjust size here */
+  width: 70px;
   height: 70px;
-  filter: drop-shadow(0 0 6px rgba(255,255,255,0.4));
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  opacity: 0.75;
-  
+  /* Removed the brightness/invert filters to show original icon colors */
+  filter: drop-shadow(0 0 8px rgba(255,255,255,0.3));
+  opacity: 0.9;
+  transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
 }
 
 .star span {
+  color: #ffffff;
+  font-weight: 800;
   font-size: 14px;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.10em;
+  -webkit-text-stroke: 1px #000;
+  text-shadow:
+    -1px -1px 0 #000,
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000;
+  transition: filter 0.25s ease, transform 0.25s ease;
+  white-space: nowrap;
 }
 
 .star:hover img {
   transform: scale(1.15);
   opacity: 1;
+  filter: drop-shadow(0 0 12px rgba(255,255,255,0.6));
 }
 
+.star:hover span {
+  filter: brightness(1.4);
+  transform: scale(1.05);
+}
 
 /* SMOKE LAYER */
 .smoke-layer {
@@ -156,7 +254,7 @@ html, body {
   width: 160%;
   height: 100%;
   background: url("https://mocksurl.com/assets/uploads/mocks/85-light_smoke.png?260") center/cover no-repeat;
-  opacity: 0.06; /* very subtle */
+  opacity: 0.06;
   z-index: 2;
   pointer-events: none;
   animation: smokeDrift 10s linear infinite;
@@ -167,119 +265,13 @@ html, body {
   to   { transform: translateX(30%); }
 }
 
-
-.nav-icon.about{
-  margin-left: 350px;
-  margin-bottom: -10px;
-}
-.nav-text.about{
-  margin-left: 0px;
-  margin-bottom: -10px;
-}
-
-.nav-icon.music{
-  margin-left: 250px;
-  margin-bottom: -320px;
-}
-
-.nav-text.music{
-  margin-left: -0px;
-  margin-bottom: -320px;
-}
-.nav-icon.videos{
-  margin-left: 200px; 
-  margin-bottom: -720px;
-}
-.nav-text.videos{
-   margin-left: 0px;
-  margin-bottom: -720px;
-}
-
-.nav-icon.shop{
-  margin-left: 300px; 
-  margin-bottom: -1120px;
-
-}
-.nav-text.shop{
-  margin-left: 0px;
-  margin-bottom: -1120px;
-}
-
-.nav-icon.quincy-vip{
-  margin-left: 0px;
-  margin-bottom: -100px;
-}
-.nav-text.quincy-vip{
-   margin-left: 900px; 
-   margin-bottom: -100px;
-}
-
-.nav-text.yourmailinglist{
-  margin-left: 990px;
-  margin-bottom: -320px;
-}
-.nav-icon.yourmailinglist{
-  margin-left: 0px;
-  margin-bottom: -320px;
-}
-.nav-text.socials{
-  margin-left: 1030px;
-  margin-bottom: -720px;
-}
-.nav-icon.socials{
-  margin-left: -0px; 
-  margin-bottom: -720px;
-}
-
-.nav-text.contact{
-  margin-left: 940px;
-  margin-bottom: -1120px;
-}
-.nav-icon.contact{
-   margin-left: -0px;
-   margin-bottom: -1120px;
-}
-
-
-
-/* Base nav text */
-.nav-text {
-  color: #ffffff;
-  font-weight: 800;
-  letter-spacing: 0.10em;
-
-  /* black border effect */
-  -webkit-text-stroke: 1px #000;
-  
-
-  /* fallback for browsers without stroke */
-  text-shadow:
-    -1px -1px 0 #000,
-     1px -1px 0 #000,
-    -1px  1px 0 #000,
-     1px  1px 0 #000;
-
-  transition: filter 0.25s ease, transform 0.25s ease;
-}
-
-/* Hover glow */
-.star:hover .nav-text {
-  filter: brightness(1.4);
-  transform: scale(1.05);
-}
-
-/* Icon hover glow */
-.star:hover .nav-icon {
-  filter: brightness(1.4) drop-shadow(0 0 6px rgb(255, 255, 255));
-}
-
-
+/* QREW BRAND */
 .qrew-brand {
   position: fixed;
   left: 50%;
-  bottom: 4vh;          /* pushes into the black void */
+  bottom: 4vh;
   transform: translateX(-50%);
-  z-index: 2;          /* below nav, above stars */
+  z-index: 2;
   pointer-events: auto;
   opacity: 0.85;
   transition: transform .3s ease, opacity .3s ease;
