@@ -439,12 +439,12 @@
   }
   
   .nav.left {
-    top: 20px;
+    top: 50px;
   }
   
   .nav.right {
     top: auto;
-    bottom: 20px;
+    bottom: 50px;
   }
 
   .star {
@@ -506,12 +506,12 @@
   }
   
   .nav.left {
-    top: 20px;
+    top: 50px;
     gap: 8px;
   }
   
   .nav.right {
-    bottom: 20px;
+    bottom: 50px;
     gap: 8px;
   }
 
@@ -554,13 +554,13 @@
   }
   
   .nav.left {
-    top: 20px;
+    top: 50px;
     gap: 2px;
     padding: 0 10px;
   }
   
   .nav.right {
-    bottom: 20px;
+    bottom: 50px;
     gap: 2px;
     padding: 0 10px;
   }
