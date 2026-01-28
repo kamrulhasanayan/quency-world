@@ -411,69 +411,58 @@
   }
 }
 
-/* ---------- Mobile Phones (480px - 679px) - KEEPS CIRCULAR LAYOUT ---------- */
+/* ---------- Mobile Phones (480px - 679px) - TOP/BOTTOM LAYOUT ---------- */
 @media (max-width: 679px) {
   body {
     overflow-y: auto;
   }
 
+  /* Mobile-specific background */
+  .background {
+    background-image: url("https://mocksurl.com/assets/uploads/mocks/89-mobile_background_photoroom.png?919");
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  /* Reposition nav containers for top/bottom layout */
+  .nav.left,
+  .nav.right {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+    padding: 0 20px;
+  }
+  
   .nav.left {
-    left: 1%;
+    top: 70px;
   }
   
   .nav.right {
-    right: 1%;
+    top: auto;
+    bottom: 70px;
+  }
+
+  .star {
+    position: static;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
   }
 
   .star img {
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
   }
 
   .star span {
-    font-size: 12px;
+    font-size: 10px;
     letter-spacing: 0.08em;
-  }
-  
-  /* Very tight circular positioning for mobile */
-  .nav.left .star:nth-child(1) {
-    top: -180px;
-    left: 60px;
-  }
-  
-  .nav.left .star:nth-child(2) {
-    top: -80px;
-    left: 5px;
-  }
-  
-  .nav.left .star:nth-child(3) {
-    top: 30px;
-    left: 0px;
-  }
-  
-  .nav.left .star:nth-child(4) {
-    top: 130px;
-    left: 70px;
-  }
-  
-  .nav.right .star:nth-child(1) {
-    top: -180px;
-    right: 20px;
-  }
-  
-  .nav.right .star:nth-child(2) {
-    top: -80px;
-    right: -5px;
-  }
-  
-  .nav.right .star:nth-child(3) {
-    top: 30px;
-    right: 0px;
-  }
-  
-  .nav.right .star:nth-child(4) {
-    top: 130px;
-    right: 35px;
+    text-align: center;
   }
 
   /* Overlay panel */
@@ -498,8 +487,9 @@
     font-size: 13px;
   }
 
-  .qrew-brand {
-    bottom: 7vh;
+ 
+ .qrew-brand {
+    bottom: 10vh;
   }
 
   .qrew-brand img {
@@ -510,66 +500,34 @@
 
 /* ---------- Small Phones (400px - 479px) ---------- */
 @media (max-width: 479px) {
+  .background {
+    background-image: url("https://mocksurl.com/assets/uploads/mocks/89-mobile_background_photoroom.png?919");
+    background-size: contain;
+  }
+  
   .nav.left {
-    left: 0.5%;
+    top: 70px;
+    gap: 8px;
   }
   
   .nav.right {
-    right: 0.5%;
+    bottom: 70px;
+    gap: 8px;
   }
 
   .star img {
-    width: 38px;
-    height: 38px;
+    width: 45px;
+    height: 45px;
   }
 
   .star span {
-    font-size: 10px;
+    font-size: 9px;
   }
   
-  /* Extra tight positioning */
-  .nav.left .star:nth-child(1) {
-    top: -190px;
-    left: 0px;
-  }
-  
-  .nav.left .star:nth-child(2) {
-    top: -80px;
-    left: 0px;
-  }
-  
-  .nav.left .star:nth-child(3) {
-    top: 35px;
-    left: 0px;
-  }
-  
-  .nav.left .star:nth-child(4) {
-    top: 150px;
-    left: 10px;
-  }
-  
-  .nav.right .star:nth-child(1) {
-    top: -190px;
-    right: 0px;
-  }
-  
-  .nav.right .star:nth-child(2) {
-    top: -80px;
-    right: 0px;
-  }
-  
-  .nav.right .star:nth-child(3) {
-    top: 35px;
-    right: 0px;
-  }
-  
-  .nav.right .star:nth-child(4) {
-    top: 150px;
-    right: 0px;
-  }
   .qrew-brand {
-    bottom: 9vh;
+    bottom: 10vh;
   }
+  
   .qrew-brand img {
     width: 80px;
   }
@@ -590,57 +548,37 @@
 
 /* ---------- Extra Small Phones (under 400px) ---------- */
 @media (max-width: 399px) {
+  .background {
+    background-image: url("https://mocksurl.com/assets/uploads/mocks/89-mobile_background_photoroom.png?919");
+    background-size: contain;
+  }
+  
+  .nav.left {
+    top: 70px;
+    gap: 2px;
+    padding: 0 10px;
+  }
+  
+  .nav.right {
+    bottom: 70px;
+    gap: 2px;
+    padding: 0 10px;
+  }
+  
   .star img {
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
   }
 
   .star span {
-    font-size: 7px;
+    font-size: 8px;
   }
   
-  /* Ultra tight positioning */
-  .nav.left .star:nth-child(1) {
-    top: -80px;
-    left: 3px;
-  }
-  
-  .nav.left .star:nth-child(2) {
-    top: -5px;
-    left: 0px;
-  }
-  
-  .nav.left .star:nth-child(3) {
-    top: 40px;
-    left: 0px;
-  }
-  
-  .nav.left .star:nth-child(4) {
-    top: 85px;
-    left: 8px;
-  }
-  
-  .nav.right .star:nth-child(1) {
-    top: -80px;
-    right: 3px;
-  }
-  
-  .nav.right .star:nth-child(2) {
-    top: -5px;
-    right: 0px;
-  }
-  
-  .nav.right .star:nth-child(3) {
-    top: 40px;
-    right: 0px;
-  }
-  
-  .nav.right .star:nth-child(4) {
-    top: 85px;
-    right: 8px;
+ .qrew-brand {
+    bottom: 10vh;
   }
   
   .qrew-brand img {
-    width: 60px;
+    width: 70px;
   }
 }
