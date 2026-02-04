@@ -90,6 +90,65 @@ document.addEventListener("keydown", e => {
 });
 
 
+
+const musicData = [
+  {
+    title: "QUINCY – Echoes",
+    artwork: "https://mocksurl.com/assets/uploads/mocks/54-ab67616d00001e024b9c8873b2bd7c101b02f6f1.jpg?1026",
+    link: "https://frequincy.lnk.to/QuincySpotify"
+  },
+  {
+    title: "QUINCY – Nova",
+    artwork: "https://mocksurl.com/assets/uploads/mocks/46-ab67616d00001e02c895d628f0826d1d037f8adc.jpg?1533",
+    link: "https://frequincy.lnk.to/QuincyAppleMusic"
+  },
+  {
+    title: "QUINCY – Orbit",
+    artwork: "https://mocksurl.com/assets/uploads/mocks/26-ab67616d00001e02dd84b655c72fbe2e9993adc6.jpg?444",
+    link: "https://frequincy.lnk.to/QYTMUSIC"
+  }
+];
+
+const musicModal = document.getElementById("musicModal");
+const carousel = document.querySelector(".music-carousel");
+
+musicData.forEach(item => {
+  const card = document.createElement("div");
+  card.className = "music-card";
+  card.innerHTML = `
+    <img src="${item.artwork}">
+    <span>${item.title}</span>
+  `;
+  card.onclick = () => window.open(item.link, "_blank");
+  carousel.appendChild(card);
+});
+
+/* Open modal from your MUSIC button */
+document.querySelector('[data-panel="music"]').addEventListener("click", () => {
+  musicModal.classList.add("active");
+  document.body.style.overflow = "hidden";
+});
+
+/* Close logic */
+document.querySelector(".music-close").onclick = closeMusic;
+document.querySelector(".music-modal-backdrop").onclick = closeMusic;
+
+function closeMusic() {
+  musicModal.classList.remove("active");
+  document.body.style.overflow = "";
+}
+
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") closeMusic();
+});
+
+/* Arrow scrolling */
+document.querySelector(".carousel-arrow.left").onclick = () =>
+  carousel.scrollBy({ left: -300, behavior: "smooth" });
+
+document.querySelector(".carousel-arrow.right").onclick = () =>
+  carousel.scrollBy({ left: 300, behavior: "smooth" });
+
   // all your JS here
 });
 
