@@ -93,19 +93,19 @@ document.addEventListener("keydown", e => {
 
 const musicData = [
   {
-    title: "QUINCY – Echoes",
-    artwork: "https://mocksurl.com/assets/uploads/mocks/54-ab67616d00001e024b9c8873b2bd7c101b02f6f1.jpg?1026",
-    link: "https://frequincy.lnk.to/QuincySpotify"
+    title: "Quincy - on your time",
+    artwork: "https://mocksurl.com/assets/uploads/mocks/1-artwork_440x440__2_.jpg?629",
+    link: "http://Frequincy.lnk.to/OnYourTime"
   },
   {
-    title: "QUINCY – Nova",
-    artwork: "https://mocksurl.com/assets/uploads/mocks/46-ab67616d00001e02c895d628f0826d1d037f8adc.jpg?1533",
-    link: "https://frequincy.lnk.to/QuincyAppleMusic"
+    title: "Quincy - Send Me The Addy",
+    artwork: "https://mocksurl.com/assets/uploads/mocks/51-artwork_440x440__1_.jpg?957",
+    link: "https://Frequincy.lnk.to/SendMeTheAddy"
   },
   {
-    title: "QUINCY – Orbit",
-    artwork: "https://mocksurl.com/assets/uploads/mocks/26-ab67616d00001e02dd84b655c72fbe2e9993adc6.jpg?444",
-    link: "https://frequincy.lnk.to/QYTMUSIC"
+    title: "Quincy - Stupid",
+    artwork: "https://mocksurl.com/assets/uploads/mocks/7-artwork_440x440.jpg?930",
+    link: "http://Frequincy.lnk.to/Stupid"
   }
 ];
 
@@ -152,4 +152,53 @@ document.querySelector(".carousel-arrow.right").onclick = () =>
   // all your JS here
 });
 
+const musicData = [
+  {
+    title: "On Your Time",
+    artwork: "your-artwork-1.jpg",
+    link: "http://Frequincy.lnk.to/OnYourTime",
+    latest: true
+  },
+  {
+    title: "Send Me The Addy",
+    artwork: "your-artwork-2.jpg",
+    link: "https://Frequincy.lnk.to/SendMeTheAddy"
+  },
+  {
+    title: "Stupid",
+    artwork: "your-artwork-3.jpg",
+    link: "https://Frequincy.lnk.to/Stupid"
+  }
+];
+musicData.forEach(item => {
+  const card = document.createElement("div");
+  card.className = "music-card";
+
+  card.innerHTML = `
+    <div class="artwork-wrapper">
+      ${item.latest ? '<div class="latest-badge">LATEST</div>' : ''}
+      <img src="${item.artwork}" loading="lazy">
+    </div>
+    <span>${item.title}</span>
+  `;
+
+  card.onclick = () => window.open(item.link, "_blank");
+  carousel.appendChild(card);
+});
+card.querySelector("img").addEventListener("load", function(){
+  this.classList.add("loaded");
+});
+if (panel === "videos") {
+  panelBody.innerHTML = `
+    <h2>Videos</h2>
+    <div class="video-wrapper">
+      <iframe 
+        src="https://www.youtube.com/embed/NAd7qR-qDaE?list=PLiOMlFv8aRoLc3Nv_3fBYYLj6vSdIkEvc"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+      </iframe>
+    </div>
+  `;
+}
 
