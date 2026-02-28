@@ -5,6 +5,39 @@ const panelBody = document.getElementById("panel-body");
 // DIRECT listeners instead of delegation
 document.querySelectorAll(".star").forEach(btn => {
   btn.addEventListener("click", function(e) {
+    document.querySelectorAll(".star").forEach(btn => {
+
+  btn.addEventListener("click", function(e) {
+
+    e.preventDefault();
+
+    const panel = this.dataset.panel;
+    const link = this.dataset.link;
+
+    if (link) {
+      window.open(link, "_blank");
+      return;
+    }
+
+    overlay.classList.add("active");
+    document.body.style.overflow = "hidden";
+
+    if (panel === "music") {
+      panelBody.innerHTML = renderMusicSections();
+
+      document.querySelectorAll(".music-item").forEach(item => {
+        item.addEventListener("click", function () {
+          const link = this.dataset.link;
+          if (link && link !== "#") {
+            window.open(link, "_blank");
+          }
+        });
+      });
+    }
+
+  });
+
+});
     e.stopPropagation();
 
     const panel = this.dataset.panel;
@@ -17,13 +50,134 @@ document.querySelectorAll(".star").forEach(btn => {
 
     overlay.classList.add("active");
 
+
+
+
+
+    
     if (panel === "about") {
       panelBody.innerHTML = `<h2>About Quincy</h2><p>Content coming soon.</p>`;
     }
 
     if (panel === "contact") {
-      panelBody.innerHTML = `<h2>Contact</h2><p>Qontact@frequincy.com</p>`;
-    }
+  panelBody.innerHTML = `
+    <h2>Contact</h2>
+
+    <div class="contact-wrapper">
+      <span class="contact-email" id="emailText">
+        Qontact@frequincy.com
+      </span>
+
+      <button class="copy-btn" id="copyEmail">
+        Copy
+      </button>
+    </div>
+  `;
+
+  // Copy functionality
+  document.getElementById("copyEmail").addEventListener("click", function () {
+    const email = document.getElementById("emailText").innerText;
+
+    navigator.clipboard.writeText(email).then(() => {
+      this.innerText = "Copied!";
+      this.classList.add("copied");
+
+      setTimeout(() => {
+        this.innerText = "Copy";
+        this.classList.remove("copied");
+      }, 1500);
+    });
+  });
+}
+
+
+const musicLibrary = {
+  albums: [
+    { title: "ELEVATED COMEDOWN", link: "#" },
+    { title: "RAISING KANAN", link: "#" },
+    { title: "LOWKEY BUT LIT", link: "#" },
+    { title: "PERFECT IN MY EYES", link: "#" }
+  ],
+
+  singles: [
+    { title: "ON YOUR TIME", link: "https://Frequincy.lnk.to/OnYourTime", latest: true },
+    { title: "SEND ME THE ADDY", link: "https://Frequincy.lnk.to/SendMeTheAddy" },
+    { title: "STUPID", link: "https://Frequincy.lnk.to/Stupid" },
+
+    { title: "DAY & NIGHT", link: "#" },
+    { title: "STAY AWHILE", link: "#" },
+    { title: "JETTY", link: "#" },
+    { title: "SCARY MOVIES", link: "#" },
+    { title: "ON YO AZZ!", link: "#" },
+    { title: "ESC.", link: "#" },
+    { title: "AYE YO REMIX", link: "#" },
+    { title: "AYE YO", link: "#" },
+    { title: "NO STRESS", link: "#" },
+    { title: "HENNESSY", link: "#" },
+    { title: "OPTIONS (FEAT. KING COMBS)", link: "#" },
+    { title: "SPECIAL", link: "#" },
+    { title: "COMING OFF STRONG (VIBEZ IS PRIVATE)", link: "#" },
+    { title: "COMING OFF STRONG", link: "#" },
+    { title: "DEVOUR", link: "#" },
+    { title: "SORRY", link: "#" },
+    { title: "SNUGGLE UP", link: "#" },
+    { title: "YOU’RE CRAZY I’M FINE", link: "#" },
+    { title: "DON’T KNOW NOTHING", link: "#" },
+    { title: "BLACK LINGERIE", link: "#" },
+    { title: "WHAT YOU RAPPIN’ FOR?", link: "#" },
+    { title: "SEVENTEEN", link: "#" },
+    { title: "LATE NIGHT FLEX", link: "#" },
+    { title: "BLUE DOT", link: "#" },
+    { title: "RECORD STRAIGHT", link: "#" },
+    { title: "EXOTIC (FEAT. G-EAZY)", link: "#" },
+    { title: "FRIENDS FIRST (FEAT. FRENCH MONTANA)", link: "#" }
+  ],
+
+  specialReleases: [
+    { title: "SMQKE", link: "#" },
+    { title: "THIS HOLIDAY", link: "#" },
+    { title: "HAPPY BIRTHDAY TO ME", link: "#" },
+    { title: "CHRISTMAS TIME", link: "#" }
+  ],
+
+  featuredOn: [
+    { title: "GOFUNDME (MAURICE MOORE FT. QUINCY)", link: "#" },
+    { title: "FOR A LONG TIME (STAR PITCHEE FT. QUINCY)", link: "#" }
+  ]
+};
+
+function renderMusicSections() {
+  let html = `<h2>Music</h2>`;
+
+  Object.keys(musicLibrary).forEach(section => {
+
+    const sectionTitle = section
+      .replace(/([A-Z])/g, ' $1')
+      .replace(/^./, str => str.toUpperCase());
+
+    html += `
+      <div class="music-section">
+        <h3 class="music-section-title">${sectionTitle}</h3>
+        <div class="music-grid">
+    `;
+
+    musicLibrary[section].forEach(item => {
+      html += `
+        <div class="music-item ${item.latest ? "latest" : ""}"
+             data-link="${item.link}">
+          ${item.latest ? '<span class="latest-badge">LATEST</span>' : ""}
+          <span>${item.title}</span>
+        </div>
+      `;
+    });
+
+    html += `</div></div>`;
+  });
+
+  return html;
+}
+
+
 
     if (panel === "music") {
   panelBody.innerHTML = `<h2>Music</h2>
@@ -106,6 +260,31 @@ const musicData = [
     title: "Quincy - Stupid",
     artwork: "https://mocksurl.com/assets/uploads/mocks/7-artwork_440x440.jpg?930",
     link: "http://Frequincy.lnk.to/Stupid"
+  },
+  {
+    title: "ELEVATED COMEDOWN",
+    artwork: "https://mocksurl.com/assets/uploads/mocks/7-artwork_440x440.jpg?930",
+    link: "http://Frequincy.lnk.to/Stupid"
+  },
+  {
+    title: "RAISING KANAN",
+    artwork: "https://mocksurl.com/assets/uploads/mocks/7-artwork_440x440.jpg?930",
+    link: "http://Frequincy.lnk.to/Stupid"
+  },
+  {
+    title: "STUPID",
+    artwork: "https://mocksurl.com/assets/uploads/mocks/7-artwork_440x440.jpg?930",
+    link: "http://Frequincy.lnk.to/Stupid"
+  },
+  {
+    title: "LOWKEY BUT LIT",
+    artwork: "https://mocksurl.com/assets/uploads/mocks/7-artwork_440x440.jpg?930",
+    link: "http://Frequincy.lnk.to/Stupid"
+  },
+  {
+    title: "PERFECT IN MY EYES",
+    artwork: "https://mocksurl.com/assets/uploads/mocks/7-artwork_440x440.jpg?930",
+    link: "http://Frequincy.lnk.to/Stupid"
   }
 ];
 
@@ -129,6 +308,10 @@ document.querySelector('[data-panel="music"]').addEventListener("click", () => {
   document.body.style.overflow = "hidden";
 });
 
+
+
+
+
 /* Close logic */
 document.querySelector(".music-close").onclick = closeMusic;
 document.querySelector(".music-modal-backdrop").onclick = closeMusic;
@@ -145,60 +328,54 @@ document.addEventListener("keydown", e => {
 /* Arrow scrolling */
 document.querySelector(".carousel-arrow.left").onclick = () =>
   carousel.scrollBy({ left: -300, behavior: "smooth" });
+if (panel === "music") {
+  panelBody.innerHTML = renderMusicSections();
 
+  document.querySelectorAll(".music-item").forEach(item => {
+    item.addEventListener("click", function () {
+      const link = this.dataset.link;
+      if (link && link !== "#") {
+        window.open(link, "_blank");
+      }
+    });
+  });
+}
 document.querySelector(".carousel-arrow.right").onclick = () =>
   carousel.scrollBy({ left: 300, behavior: "smooth" });
 
-  // all your JS here
 });
 
-const musicData = [
-  {
-    title: "On Your Time",
-    artwork: "your-artwork-1.jpg",
-    link: "http://Frequincy.lnk.to/OnYourTime",
-    latest: true
-  },
-  {
-    title: "Send Me The Addy",
-    artwork: "your-artwork-2.jpg",
-    link: "https://Frequincy.lnk.to/SendMeTheAddy"
-  },
-  {
-    title: "Stupid",
-    artwork: "your-artwork-3.jpg",
-    link: "https://Frequincy.lnk.to/Stupid"
-  }
-];
-musicData.forEach(item => {
-  const card = document.createElement("div");
-  card.className = "music-card";
 
-  card.innerHTML = `
-    <div class="artwork-wrapper">
-      ${item.latest ? '<div class="latest-badge">LATEST</div>' : ''}
-      <img src="${item.artwork}" loading="lazy">
-    </div>
-    <span>${item.title}</span>
-  `;
-
-  card.onclick = () => window.open(item.link, "_blank");
-  carousel.appendChild(card);
-});
-card.querySelector("img").addEventListener("load", function(){
-  this.classList.add("loaded");
-});
-if (panel === "videos") {
+if(panel==="videos"){
   panelBody.innerHTML = `
     <h2>Videos</h2>
     <div class="video-wrapper">
-      <iframe 
+      <iframe
         src="https://www.youtube.com/embed/NAd7qR-qDaE?list=PLiOMlFv8aRoLc3Nv_3fBYYLj6vSdIkEvc"
-        frameborder="0"
-        allow="autoplay; encrypted-media"
         allowfullscreen>
       </iframe>
     </div>
   `;
 }
+
+const signupModal = document.getElementById("signupModal");
+
+document.querySelector('[data-link="https://yourmailinglist.com"]').addEventListener("click", function(e){
+  e.preventDefault();
+  signupModal.classList.add("active");
+  document.body.style.overflow = "hidden";
+});
+
+document.querySelector(".modal-close").onclick = closeSignup;
+document.querySelector(".modal-backdrop").onclick = closeSignup;
+
+function closeSignup(){
+  signupModal.classList.remove("active");
+  document.body.style.overflow = "";
+}
+
+document.addEventListener("keydown", e=>{
+  if(e.key==="Escape") closeSignup();
+});
+
 

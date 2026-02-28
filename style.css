@@ -451,3 +451,188 @@ html, body {
   width: 100%;
   height: 100%;
 }
+
+
+.custom-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 2000;
+}
+
+.custom-modal.active {
+  display: block;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(10px);
+}
+
+.modal-box {
+  position: absolute;
+  inset: 8%;
+  background: rgba(15,15,15,0.98);
+  border-radius: 24px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+}
+
+.modal-title {
+  margin-bottom: 20px;
+  letter-spacing: 0.2em;
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.beehiiv-wrapper iframe {
+  width: 100%;
+  max-width: 560px;
+  height: 300px;
+  border: none;
+}
+
+@media(max-width:768px){
+  .modal-box {
+    inset: 5%;
+    padding: 20px;
+  }
+
+  .beehiiv-wrapper iframe {
+    height: 350px;
+  }
+}
+
+.contact-box {
+  display:flex;
+  gap:15px;
+  align-items:center;
+}
+
+#copyEmail {
+  padding:6px 14px;
+  border-radius:20px;
+  border:none;
+  cursor:pointer;
+}
+
+
+.video-wrapper {
+  position:relative;
+  width:100%;
+  padding-top:56.25%;
+}
+
+.video-wrapper iframe {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+}
+
+.background {
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.contact-wrapper {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.contact-email {
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  font-size: 14px;
+  padding: 8px 14px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 20px;
+}
+
+.copy-btn {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background: white;
+  color: black;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.copy-btn:hover {
+  transform: scale(1.05);
+}
+
+.copy-btn.copied {
+  background: #2ecc71;
+  color: white;
+}
+
+.music-section {
+  margin-bottom: 40px;
+}
+
+.music-section-title {
+  margin-bottom: 16px;
+  letter-spacing: .2em;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.music-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+}
+
+.music-item {
+  background: rgba(255,255,255,0.05);
+  padding: 12px 16px;
+  border-radius: 14px;
+  cursor: pointer;
+  position: relative;
+  transition: 0.25s ease;
+  font-size: 13px;
+  letter-spacing: .05em;
+}
+
+.music-item:hover {
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-3px);
+}
+
+.music-item.latest {
+  border: 1px solid white;
+}
+
+.latest-badge {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  font-size: 9px;
+  background: white;
+  color: black;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-weight: 700;
+}
